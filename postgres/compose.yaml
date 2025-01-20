@@ -8,4 +8,4 @@ services:
       - ./data/db/:/var/lib/postgresql/data/
       - ./data/scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      POSTGRES_PASSWORD: qz4s3GnEf3SvVH
+      POSTGRES_PASSWORD: вашпароль
