@@ -1,6 +1,8 @@
 services:
 # velocity
   velocity: 
+    stdin_open: true
+    tty: true
     container_name: mc-velocity
     image: itzg/bungeecord
     restart: unless-stopped
@@ -14,7 +16,9 @@ services:
       TYPE: VELOCITY 
       MEMORY: 1G
 # mc-farmworld
-  lobby:
+  mc-farmworld:
+    stdin_open: true
+    tty: true
     container_name: mc-farmworld
     image: itzg/minecraft-server
     restart: unless-stopped
@@ -23,13 +27,15 @@ services:
     volumes:
       - ./mc-farmworld:/data
     environment:
-      EULA: TRUE
+      EULA: 'TRUE'
       VERSION: 1.21.1
       TYPE: PURPUR
       MEMORY: 4G
       ONLINE_MODE: TRUE
 # mc-overworld
   mc-overworld:
+    stdin_open: true
+    tty: true
     container_name: mc-overworld
     image: itzg/minecraft-server
     restart: unless-stopped
