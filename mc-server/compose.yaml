@@ -1,10 +1,8 @@
 services:
 # velocity
   velocity: 
-    stdin_open: true
-    tty: true
     container_name: mc-velocity
-    image: itzg/mc-proxy
+    image: itzg/bungeecord
     restart: unless-stopped
     networks:
       - velocity
@@ -14,24 +12,38 @@ services:
       - "25565:25577"
     environment:
       TYPE: VELOCITY 
-      MEMORY: 512M
-# main
-  main:
-    container_name: mc-main
+      MEMORY: 1G
+# mc-farmworld
+  lobby:
+    container_name: mc-farmworld
     image: itzg/minecraft-server
     restart: unless-stopped
     networks:
       - velocity
     volumes:
-      - ./mc-main:/data
+      - ./mc-farmworld:/data
+    environment:
+      EULA: TRUE
+      VERSION: 1.21.1
+      TYPE: PURPUR
+      MEMORY: 4G
+      ONLINE_MODE: TRUE
+# mc-overworld
+  mc-overworld:
+    container_name: mc-overworld
+    image: itzg/minecraft-server
+    restart: unless-stopped
+    networks:
+      - velocity
+    volumes:
+      - ./mc-overworld:/data
     environment:
       EULA: 'TRUE'
       TYPE: CUSTOM
       CUSTOM_SERVER: https://github.com/Winds-Studio/Leaf/releases/download/ver-1.21.1/leaf-1.21.1.jar
       VERSION: '1.21.1'
       INIT_MEMORY: 1G
-      MAX_MEMORY: 4G
+      MAX_MEMORY: 3G
 networks:
   velocity:
     name: velocity-network
-    
