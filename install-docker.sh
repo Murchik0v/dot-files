@@ -7,7 +7,7 @@ echo "    /_/                                 /____/                           "
 echo ""
 
 sudo apt update -y
-sudo apt upgrade 
+sudo apt upgrade -y
 mkdir temp
 cd temp
 
